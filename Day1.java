@@ -31,10 +31,10 @@ public class Day1 {
             if (!str.equals("")) {
                 current += Integer.parseInt(str);
             } else {
-                for(int i = 0; i<3; i++){
-                    if(current > nums.get(i)){
+                for (int i = 0; i < 3; i++) {
+                    if (current > nums.get(i)) {
                         nums.remove(2);
-                        nums.add(i,current);
+                        nums.add(i, current);
                         break;
                     }
                 }
