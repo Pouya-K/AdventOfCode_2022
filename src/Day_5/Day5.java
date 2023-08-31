@@ -33,26 +33,31 @@ public class Day5 {
                     createStartingCargo(line);
                 }
                 else {
-                    int numberOfMoves = Integer.parseInt(line.substring(5, line.indexOf("from")-1));
-                    int takeFrom = Integer.parseInt(line.substring(line.indexOf("from")+5, line.indexOf("from")+6)) - 1;
-                    int bringTo = Integer.parseInt(line.substring(line.indexOf("to")+3, line.indexOf("to")+4)) - 1;
-                    for(int i = 1; i<=numberOfMoves; i++){
-                        group[bringTo].add(0,group[takeFrom].get(numberOfMoves-i));
-                        group[takeFrom].remove(numberOfMoves-i);
-                    }
+                    makeMovementsPart2(line);
                 }
             }
             String finalAnswer = "";
             for(ArrayList<String> cargo : group){
                 finalAnswer += cargo.get(0);
             }
-            System.out.println(finalAnswer);
+            System.out.println("Part 2 Answer: " + finalAnswer);
 
         } catch (FileNotFoundException | RuntimeException e) {
             System.out.println("Something went wrong");
             e.printStackTrace();
         }
     }
+
+    private void makeMovementsPart2(String line) {
+        int numberOfMoves = Integer.parseInt(line.substring(5, line.indexOf("from")-1));
+        int takeFrom = Integer.parseInt(line.substring(line.indexOf("from")+5, line.indexOf("from")+6)) - 1;
+        int bringTo = Integer.parseInt(line.substring(line.indexOf("to")+3, line.indexOf("to")+4)) - 1;
+        for(int i = 1; i<=numberOfMoves; i++){
+            group[bringTo].add(0,group[takeFrom].get(numberOfMoves-i));
+            group[takeFrom].remove(numberOfMoves-i);
+        }
+    }
+
     public void part1() {
         try {
             reader = new Scanner(file);
@@ -82,7 +87,7 @@ public class Day5 {
             for(ArrayList<String> cargo : group){
                 finalAnswer += cargo.get(0);
             }
-            System.out.println(finalAnswer);
+            System.out.println("Part 1 Answer: " + finalAnswer);
 
         } catch (FileNotFoundException | RuntimeException e) {
             System.out.println("Something went wrong");
@@ -130,7 +135,7 @@ public class Day5 {
 
     public static void main(String[] args) {
         Day5 day5 = new Day5();
-//        day5.part1();
+        day5.part1();
         day5.part2();
     }
 }

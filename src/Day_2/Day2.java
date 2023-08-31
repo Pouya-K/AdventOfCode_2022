@@ -31,7 +31,7 @@ public class Day2 {
                     break;
             }
         }
-        System.out.println(score);
+        System.out.println("Part 1 Answer: " + score);
     }
 
     public void part2() throws Exception {
@@ -40,9 +40,6 @@ public class Day2 {
         while(reader.hasNext()){
             char play1 = reader.next().charAt(0);
             char play2 = reader.next().charAt(0);
-            /**
-             *
-             */
             switch (play2){
                 case 'X':
                     if(play1 == 'A') score += 3;
@@ -63,7 +60,7 @@ public class Day2 {
                     break;
             }
         }
-        System.out.println(score);
+        System.out.println("Part 2 Answer: " + score);
     }
 
     public static void main(String[] args) throws Exception {

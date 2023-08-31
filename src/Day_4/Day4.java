@@ -23,7 +23,7 @@ public class Day4 {
                     numberOfMishaps++;
                 }
             }
-            System.out.println(numberOfMishaps);
+            System.out.println("Part 1 Answer: " + numberOfMishaps);
         } catch (FileNotFoundException | RuntimeException e) {
             System.out.println("File reading messed up");
             e.printStackTrace();
@@ -53,7 +53,7 @@ public class Day4 {
                     numberOfOverlaps++;
                 }
             }
-            System.out.println(numberOfOverlaps);
+            System.out.println("Part 2 Answer: " + numberOfOverlaps);
         } catch (FileNotFoundException | RuntimeException e) {
             System.out.println("File reading messed up");
             e.printStackTrace();

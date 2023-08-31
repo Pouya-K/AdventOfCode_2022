@@ -31,7 +31,7 @@ public class Day3 {
                 }
             }
         }
-        System.out.println(prioritySum);
+        System.out.println("Part 1 Answer: " + prioritySum);
     }
 
     public void part2() throws Exception {
@@ -53,7 +53,7 @@ public class Day3 {
                 }
             }
         }
-        System.out.println(sum);
+        System.out.println("Part 2 Answer: " + sum);
     }
 
     public static void main(String[] args) throws Exception {

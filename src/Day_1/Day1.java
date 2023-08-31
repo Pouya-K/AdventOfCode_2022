@@ -16,7 +16,7 @@ public class Day1 {
                 current = 0;
             }
         }
-        System.out.println(max);
+        System.out.println("Part 1 Answer: " + max);
     }
 
     public void part2() throws Exception {
@@ -41,7 +41,7 @@ public class Day1 {
                 current = 0;
             }
         }
-        System.out.println(numbers.get(0) + numbers.get(1) + numbers.get(2));
+        System.out.println("Part 2 Answer: " + (numbers.get(0) + numbers.get(1) + numbers.get(2)));
     }
 
     public static void main(String[] args) throws Exception {
