@@ -12,7 +12,46 @@ public class Day5 {
     private int numberOfCargos = 0;
 
     public void part2(){
+        try {
+            reader = new Scanner(file);
+            findNumberOfCargoBoxes();
+            group = new ArrayList[numberOfCargos];
+            for (int i = 0; i < group.length; i++) {
+                group[i] = new ArrayList<String>();
+            }
+            reader = new Scanner(file);
+            boolean switchToActions = false;
 
+            while (reader.hasNext()) {
+                String line = reader.nextLine();
+                if (line.charAt(1) == '1') {
+                    switchToActions = true;
+                    reader.nextLine();
+                    continue;
+                }
+                if (!switchToActions) {
+                    createStartingCargo(line);
+                }
+                else {
+                    int numberOfMoves = Integer.parseInt(line.substring(5, line.indexOf("from")-1));
+                    int takeFrom = Integer.parseInt(line.substring(line.indexOf("from")+5, line.indexOf("from")+6)) - 1;
+                    int bringTo = Integer.parseInt(line.substring(line.indexOf("to")+3, line.indexOf("to")+4)) - 1;
+                    for(int i = 1; i<=numberOfMoves; i++){
+                        group[bringTo].add(0,group[takeFrom].get(numberOfMoves-i));
+                        group[takeFrom].remove(numberOfMoves-i);
+                    }
+                }
+            }
+            String finalAnswer = "";
+            for(ArrayList<String> cargo : group){
+                finalAnswer += cargo.get(0);
+            }
+            System.out.println(finalAnswer);
+
+        } catch (FileNotFoundException | RuntimeException e) {
+            System.out.println("Something went wrong");
+            e.printStackTrace();
+        }
     }
     public void part1() {
         try {
@@ -36,7 +75,7 @@ public class Day5 {
                     createStartingCargo(line);
                 }
                 else {
-                    makeMovements(line);
+                    makeMovementsPart1(line);
                 }
             }
             String finalAnswer = "";
@@ -49,10 +88,9 @@ public class Day5 {
             System.out.println("Something went wrong");
             e.printStackTrace();
         }
-
     }
 
-    private void makeMovements(String line) {
+    private void makeMovementsPart1(String line) {
         int numberOfMoves = Integer.parseInt(line.substring(5, line.indexOf("from")-1));
         int takeFrom = Integer.parseInt(line.substring(line.indexOf("from")+5, line.indexOf("from")+6)) - 1;
         int bringTo = Integer.parseInt(line.substring(line.indexOf("to")+3, line.indexOf("to")+4)) - 1;
