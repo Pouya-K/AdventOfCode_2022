@@ -2,22 +2,26 @@ package src.Day_7;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.Random;
 import java.util.Scanner;
 
 public class Day7 {
     private File file = new File("/Users/pouyakarimi/Desktop/AdventOfCode_2022/src/Day_7/day7input.txt");
     private Scanner reader;
     private int sumPart1 = 0;
+    private int minimumDelete = 70000000;
+    private int spaceNeeded = 0;
 
-    public void part1() {
+    public void getAnswer() {
         try {
             reader = new Scanner(file);
             reader.nextLine();
             Directory mainDirectory = new Directory("/", null);
             runLine(mainDirectory);
             findSumPart1(mainDirectory);
+            spaceNeeded = 30000000 - (70000000 - mainDirectory.getSize());
+            findSumPart2(mainDirectory);
             System.out.println("Part 1 Answer: " + sumPart1);
+            System.out.println("Part 2 Answer: " + minimumDelete);
         } catch (FileNotFoundException | RuntimeException e) {
             System.out.println("Something went wrong.");
             e.printStackTrace();
@@ -60,12 +64,19 @@ public class Day7 {
         }
     }
 
-    public void part2() {
-
+    public void findSumPart2(Directory directory){
+        if(directory.getSize() < minimumDelete && directory.getSize() >= spaceNeeded){
+            minimumDelete = directory.getSize();
+        }
+        for(int i = 0; i<directory.getFiles().size(); i++){
+            if(directory.getFiles().get(i) instanceof Directory){
+                findSumPart2((Directory) directory.getFiles().get(i));
+            }
+        }
     }
 
     public static void main(String[] args) {
         Day7 day7 = new Day7();
-        day7.part1();
+        day7.getAnswer();
     }
 }
